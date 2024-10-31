@@ -1,0 +1,26 @@
+name: phantom testing
+
+on: [push, pull_request]
+
+jobs:
+  phantom-testing:
+    runs-on: ${{matrix.os}}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - name: checkout kode
+        uses: actions/checkout@v4
+
+      - name: setting python versi 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: install pre-commit dari git action
+        run: |
+          pip install pre-commit
+          pre-commit install
+          pre-commit run --all-files
+        
