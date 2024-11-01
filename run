@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "running phantom"
+clear
+pip install -r requirements.txt --break-system-packages
+clear
+python phantom/phantom.py
